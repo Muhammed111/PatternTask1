@@ -24,7 +24,7 @@ namespace PatternTask1
         public struct section
         {
             
-            public int M, S, x;
+            public int  x , RM ,RS, GM , GS , BM , BS;
         };
         public void PX(int m , int s , int x )
         {
@@ -58,42 +58,99 @@ namespace PatternTask1
 
              section C1 , C2 , C3 , C4;
 
-            C1.M = Convert.ToInt32(M1.Text);
-            C1.S = Convert.ToInt32(S1.Text);
-            C2.M = Convert.ToInt32(M2.Text);
-            C2.S = Convert.ToInt32(S2.Text);
-            C3.M = Convert.ToInt32(M3.Text);
-            C3.S = Convert.ToInt32(S3.Text);
-            C4.M = Convert.ToInt32(M4.Text);
-            C4.S = Convert.ToInt32(S4.Text);
+            C1.RM = Convert.ToInt32(R1M.Text);
+            C1.RS = Convert.ToInt32(R1S.Text);
+            C1.GM = Convert.ToInt32(G1M.Text);
+            C1.GS = Convert.ToInt32(G1S.Text);
+            C1.BM = Convert.ToInt32(B1M.Text);
+            C1.BS = Convert.ToInt32(B1S.Text);
+
+
+            C2.RM = Convert.ToInt32(R2M.Text);
+            C2.RS = Convert.ToInt32(R2S.Text);
+            C2.GM = Convert.ToInt32(G2M.Text);
+            C2.GS = Convert.ToInt32(G2S.Text);
+            C2.BM = Convert.ToInt32(B2M.Text);
+            C2.BS = Convert.ToInt32(B2S.Text);
+
+
+            C3.RM = Convert.ToInt32(R3M.Text);
+            C3.RS = Convert.ToInt32(R3S.Text);
+            C3.GM = Convert.ToInt32(G3M.Text);
+            C3.GS = Convert.ToInt32(G3S.Text);
+            C3.BM = Convert.ToInt32(B3M.Text);
+            C3.BS = Convert.ToInt32(B3S.Text);
+
+
+            C4.RM = Convert.ToInt32(R4M.Text);
+            C4.RS = Convert.ToInt32(R4S.Text);
+            C4.GM = Convert.ToInt32(G4M.Text);
+            C4.GS = Convert.ToInt32(G4S.Text);
+            C4.BM = Convert.ToInt32(B4M.Text);
+            C4.BS = Convert.ToInt32(B4S.Text);
+           
+
 
             Random rnd = new Random();
-            C1.x = rnd.Next(1, 50);
-            C2.x = rnd.Next(1, 100);
-            C3.x = rnd.Next(1, 150);
-            C4.x = rnd.Next(1, 250);
+            C1.x = rnd.Next(1, 10);
+            C2.x = rnd.Next(1, 10);
+            C3.x = rnd.Next(1, 10);
+            C4.x = rnd.Next(1, 10);
 
-             PX(C1.M, C1.S, C1.x);
-             int  p1 =Convert.ToInt32( p);
-             PX(C2.M, C2.S, C2.x);
-             int p2 = Convert.ToInt32(p);
-             PX(C3.M, C3.S, C3.x);
-             int p3 = Convert.ToInt32(p);
-             PX(C4.M, C4.S, C4.x);
-             int p4 = Convert.ToInt32(p);
-             Color color = Color.FromArgb(Math.Abs(p1), 0, 0);
+             PX(C1.RM, C1.RS, C1.x);
+             int  R1 = Math.Abs(Convert.ToInt32( p));
+
+             PX(C1.GM, C1.GS, C1.x);
+             int G1 = Math.Abs(Convert.ToInt32(p));
+
+
+             PX(C1.BM, C1.BS, C1.x);
+             int B1 = Math.Abs(Convert.ToInt32(p));
+
+             Color color = Color.FromArgb(R1 , G1 , B1);
             SolidBrush brush = new SolidBrush(color);
-
             gfx.FillRectangle(brush , 0 , 0 , w/4 , h );
 
-            color = Color.FromArgb(Math.Abs(p2), 0, 0);
-            gfx.FillRectangle(brush,  w / 4, 0 , w/4 , h );
 
-            color = Color.FromArgb(Math.Abs(p3), 0, 0);
-            gfx.FillRectangle(brush, w / 2, 0 ,w/4 ,h);
+            PX(C2.RM, C2.RS, C2.x);
+             R1 = Math.Abs(Convert.ToInt32(p));
 
-            color = Color.FromArgb(Math.Abs(p4), 0, 0);
-            gfx.FillRectangle(brush, w - (w/4)  , 0,w/4 ,h);
+            PX(C2.GM, C2.GS, C2.x);
+             G1 = Math.Abs(Convert.ToInt32(p));
+             PX(C2.BM, C2.BS, C2.x);
+              B1 = Math.Abs(Convert.ToInt32(p));
+             color = Color.FromArgb(R1, G1, B1);
+             brush = new SolidBrush(color);
+             gfx.FillRectangle(brush, w / 4, 0, w / 4, h);
+
+
+             PX(C3.RM, C3.RS, C3.x);
+             R1 = Math.Abs(Convert.ToInt32(p));
+
+             PX(C3.GM, C3.GS, C3.x);
+             G1 = Math.Abs(Convert.ToInt32(p));
+             PX(C3.BM, C3.BS, C3.x);
+              B1 = Math.Abs(Convert.ToInt32(p));
+             color = Color.FromArgb(R1, G1, B1);
+             brush = new SolidBrush(color);
+             gfx.FillRectangle(brush, w / 2, 0, w / 4, h);
+
+
+             PX(C4.RM, C4.RS, C4.x);
+             R1 = Math.Abs(Convert.ToInt32(p));
+
+             PX(C4.GM, C4.GS, C4.x);
+             G1 = Math.Abs(Convert.ToInt32(p));
+             PX(C4.BM, C4.BS, C4.x);
+              B1 = Math.Abs(Convert.ToInt32(p));
+             color = Color.FromArgb(R1, G1, B1);
+             brush = new SolidBrush(color);
+             gfx.FillRectangle(brush, w - (w / 4), 0, w / 4, h);
+        
+           
+
+           
+           
 
 
             
