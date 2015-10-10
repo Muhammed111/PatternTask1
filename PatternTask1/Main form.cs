@@ -37,7 +37,8 @@ namespace PatternTask1
             int tmp2 = 2 * s * s;
             tmp1 = tmp1 / tmp2;
             res = res * Math.Pow(tmp1, tmp1);
-            p = res;
+           //p = (res*s)+m;
+            p =res ;
         }
 
 
@@ -98,10 +99,10 @@ namespace PatternTask1
 
             // Create 4 Random Numbers 
             Random rnd = new Random();
-            C1.x = rnd.Next(1, 10);
-            C2.x = rnd.Next(1, 10);
-            C3.x = rnd.Next(1, 10);
-            C4.x = rnd.Next(1, 10);
+            C1.x = rnd.Next(1, w);
+            C2.x = rnd.Next(1, w);
+            C3.x = rnd.Next(1, w);
+            C4.x = rnd.Next(1, w);
 
 
             // Generate Random Red color value
