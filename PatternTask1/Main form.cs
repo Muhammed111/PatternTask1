@@ -24,7 +24,7 @@ namespace PatternTask1
         public struct section
         {
             
-            public int  x , RM ,RS, GM , GS , BM , BS;
+            public double  x , RM ,RS, GM , GS , BM , BS;
         };
 
 
@@ -42,6 +42,25 @@ namespace PatternTask1
         }
 
 
+        public double createMemberInNormalDistribution(double mean, double std_dev, Random r)
+        {
+            double u, v, S;
+
+            do
+            {
+                u = 2.0 * r.NextDouble() - 1.0;
+                v = 2.0 * r.NextDouble() - 1.0;
+                S = u * u + v * v;
+            }
+            while (S >= 1.0);
+
+            double fac = Math.Sqrt(-2.0 * Math.Log(S) / S);
+            fac = u * fac;
+
+            return mean + (fac * std_dev);
+        }
+
+
         OpenFileDialog ofd = new OpenFileDialog();
         private void button1_Click(object sender, EventArgs e)  // Load and Display Image
         {
@@ -55,36 +74,36 @@ namespace PatternTask1
         public void read()
         {
             //Read Class 1 Data 
-            C1.RM = Convert.ToInt32(R1M.Text);
-            C1.RS = Convert.ToInt32(R1S.Text);
-            C1.GM = Convert.ToInt32(G1M.Text);
-            C1.GS = Convert.ToInt32(G1S.Text);
-            C1.BM = Convert.ToInt32(B1M.Text);
-            C1.BS = Convert.ToInt32(B1S.Text);
+            C1.RM = Convert.ToDouble(R1M.Text);
+            C1.RS = Convert.ToDouble(R1S.Text);
+            C1.GM = Convert.ToDouble(G1M.Text);
+            C1.GS = Convert.ToDouble(G1S.Text);
+            C1.BM = Convert.ToDouble(B1M.Text);
+            C1.BS = Convert.ToDouble(B1S.Text);
 
             //Read Class 2 Data 
-            C2.RM = Convert.ToInt32(R2M.Text);
-            C2.RS = Convert.ToInt32(R2S.Text);
-            C2.GM = Convert.ToInt32(G2M.Text);
-            C2.GS = Convert.ToInt32(G2S.Text);
-            C2.BM = Convert.ToInt32(B2M.Text);
-            C2.BS = Convert.ToInt32(B2S.Text);
+            C2.RM = Convert.ToDouble(R2M.Text);
+            C2.RS = Convert.ToDouble(R2S.Text);
+            C2.GM = Convert.ToDouble(G2M.Text);
+            C2.GS = Convert.ToDouble(G2S.Text);
+            C2.BM = Convert.ToDouble(B2M.Text);
+            C2.BS = Convert.ToDouble(B2S.Text);
 
             //Read Class 3 Data 
-            C3.RM = Convert.ToInt32(R3M.Text);
-            C3.RS = Convert.ToInt32(R3S.Text);
-            C3.GM = Convert.ToInt32(G3M.Text);
-            C3.GS = Convert.ToInt32(G3S.Text);
-            C3.BM = Convert.ToInt32(B3M.Text);
-            C3.BS = Convert.ToInt32(B3S.Text);
+            C3.RM = Convert.ToDouble(R3M.Text);
+            C3.RS = Convert.ToDouble(R3S.Text);
+            C3.GM = Convert.ToDouble(G3M.Text);
+            C3.GS = Convert.ToDouble(G3S.Text);
+            C3.BM = Convert.ToDouble(B3M.Text);
+            C3.BS = Convert.ToDouble(B3S.Text);
 
             //Read Class 4 Data 
-            C4.RM = Convert.ToInt32(R4M.Text);
-            C4.RS = Convert.ToInt32(R4S.Text);
-            C4.GM = Convert.ToInt32(G4M.Text);
-            C4.GS = Convert.ToInt32(G4S.Text);
-            C4.BM = Convert.ToInt32(B4M.Text);
-            C4.BS = Convert.ToInt32(B4S.Text);
+            C4.RM = Convert.ToDouble(R4M.Text);
+            C4.RS = Convert.ToDouble(R4S.Text);
+            C4.GM = Convert.ToDouble(G4M.Text);
+            C4.GS = Convert.ToDouble(G4S.Text);
+            C4.BM = Convert.ToDouble(B4M.Text);
+            C4.BS = Convert.ToDouble(B4S.Text);
 
         }
 
@@ -99,68 +118,72 @@ namespace PatternTask1
 
             // Create 4 Random Numbers 
             Random rnd = new Random();
+           /*
             C1.x = rnd.Next(1, w);
             C2.x = rnd.Next(1, w);
             C3.x = rnd.Next(1, w);
             C4.x = rnd.Next(1, w);
-
+            */
 
             // Generate Random Red color value
-            PX(C1.RM, C1.RS, C1.x);
-            int R1 = Math.Abs(Convert.ToInt32(p));
-
+ 
+            double R1 = createMemberInNormalDistribution(C1.RM,C1.RS,rnd);
+        
             // Generate Random green color value
-            PX(C1.GM, C1.GS, C1.x);
-            int G1 = Math.Abs(Convert.ToInt32(p));
-
+         
+            double G1 = createMemberInNormalDistribution(C1.GM, C1.GS, rnd);
             // Generate Random Blue color value
-            PX(C1.BM, C1.BS, C1.x);
-            int B1 = Math.Abs(Convert.ToInt32(p));
-
-            Color color = Color.FromArgb(R1, G1, B1);
+         
+            double B1 = createMemberInNormalDistribution(C1.BM, C1.BS, rnd);
+            Color color = Color.FromArgb(Convert.ToInt32(R1),Convert.ToInt32( G1), Convert.ToInt32(B1));
             SolidBrush brush = new SolidBrush(color);
             gfx.FillRectangle(brush, 0, 0, w / 4, h);
 
             // Generate Random Red color value
-            PX(C2.RM, C2.RS, C2.x);
-            R1 = Math.Abs(Convert.ToInt32(p));
+      
 
+             R1 = createMemberInNormalDistribution(C2.RM, C2.RS, rnd);
             // Generate Random green color value
-            PX(C2.GM, C2.GS, C2.x);
-            G1 = Math.Abs(Convert.ToInt32(p));
+          
+            G1 = createMemberInNormalDistribution(C2.GM, C2.GS, rnd);
+
             // Generate Random Blue color value
-            PX(C2.BM, C2.BS, C2.x);
-            B1 = Math.Abs(Convert.ToInt32(p));
-            color = Color.FromArgb(R1, G1, B1);
+           
+
+            B1 = createMemberInNormalDistribution(C2.BM, C2.BS, rnd);
+            color = Color.FromArgb(Convert.ToInt32(R1), Convert.ToInt32(G1), Convert.ToInt32(B1));
             brush = new SolidBrush(color);
             gfx.FillRectangle(brush, w / 4, 0, w / 4, h);
 
             // Generate Random Red color value
-            PX(C3.RM, C3.RS, C3.x);
-            R1 = Math.Abs(Convert.ToInt32(p));
+         
+
+            R1 = createMemberInNormalDistribution(C3.RM, C3.RS, rnd);
 
             // Generate Random green color value
-            PX(C3.GM, C3.GS, C3.x);
-            G1 = Math.Abs(Convert.ToInt32(p));
+           
+            G1 = createMemberInNormalDistribution(C3.GM, C3.GS, rnd);
             // Generate Random Blue color value
-            PX(C3.BM, C3.BS, C3.x);
-            B1 = Math.Abs(Convert.ToInt32(p));
-            color = Color.FromArgb(R1, G1, B1);
+          
+
+            B1 = createMemberInNormalDistribution(C3.BM, C3.BS, rnd);
+            color = Color.FromArgb(Convert.ToInt32(R1), Convert.ToInt32(G1), Convert.ToInt32(B1));
             brush = new SolidBrush(color);
             gfx.FillRectangle(brush, w / 2, 0, w / 4, h);
 
             // Generate Random Red color value
-            PX(C4.RM, C4.RS, C4.x);
-            R1 = Math.Abs(Convert.ToInt32(p));
+          
 
+            R1 = createMemberInNormalDistribution(C4.RM, C4.RS, rnd);
             // Generate Random green color value
-            PX(C4.GM, C4.GS, C4.x);
-            G1 = Math.Abs(Convert.ToInt32(p));
+            
+
+            G1 = createMemberInNormalDistribution(C4.GM, C4.GS, rnd);
 
             // Generate Random Blue color value
-            PX(C4.BM, C4.BS, C4.x);
-            B1 = Math.Abs(Convert.ToInt32(p));
-            color = Color.FromArgb(R1, G1, B1);
+            
+            B1 = createMemberInNormalDistribution(C4.BM, C4.BS, rnd);
+            color = Color.FromArgb(Convert.ToInt32(R1), Convert.ToInt32(G1), Convert.ToInt32(B1));
             brush = new SolidBrush(color);
             gfx.FillRectangle(brush, w - (w / 4), 0, w / 4, h);
 
